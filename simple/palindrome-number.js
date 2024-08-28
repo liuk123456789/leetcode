@@ -1,4 +1,5 @@
 /**
+ *
  * 给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
 
 回文数
@@ -26,3 +27,12 @@
 
 -231 <= x <= 231 - 1 
 */
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function (x) {
+    // 0 负数 10的倍数 一定不会是回文数
+    if (!x || x < 0 || !(x % 10) && ) return false
+    // 需要通过一种方式将数字翻转
+};
