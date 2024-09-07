@@ -46,4 +46,19 @@ for (int i = 0; i < actualLength; i++) {
  * @return {number}
  */
 var removeElement = function(nums, val) {
+    if(!nums.length) return 0
+    let slow = 0, fast = nums.length, temp
+    for(; slow < fast; slow++) {
+        // 如果当前的下标对应的值等于val,那么需要将其后最后的元素进行替换
+        if(nums[slow] === val) {
+            // 进行值交换
+            temp = nums[slow]
+            nums[slow] = nums[fast - 1]
+            nums[fast - 1] = temp
+            // 两个指针同时后退
+            fast--
+            slow--
+        }
+    }
+    return slow
 };

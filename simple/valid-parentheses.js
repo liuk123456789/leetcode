@@ -51,7 +51,7 @@ var isValid = function (s) {
         // 如果匹配上了，那么需要将对应的map的value 进行出栈操作
         if (map.has(item)) {
             if(!stack.length || map.get(item) !== stack[stack.length -1]) {
-               return false
+                return false
             } else {
                 stack.pop()
             }
