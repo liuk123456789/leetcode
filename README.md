@@ -87,3 +87,50 @@ middle = (left + right + 1) >> 1;//结果为2
 结论
 优先考虑使用左闭右开的原则吧，如果第一个元素有特殊情况，或担心向前越界的情况，考虑使用左开右闭。
 
+### 二叉树的三种遍历方式
+
+**前序遍历**
+
+**中 左 右**
+
+```js
+function inorderTraversal(root: TreeNode | null): number[] {
+    if(!root) return []
+    return [
+       root.val,
+      ...(root.left ? inorderTraversal(root.left) : []),
+      ...(root.right ? inorderTraversal(root.right) : [])
+    ]
+};
+```
+
+**中序遍历**
+
+**左 根 右**
+
+```js
+function inorderTraversal(root: TreeNode | null): number[] {
+    if(!root) return []
+    return [
+      ...(root.left ? inorderTraversal(root.left) : []),
+      root.val,
+      ...(root.right ? inorderTraversal(root.right) : [])
+    ]
+};
+```
+
+**后序遍历**
+
+**中 右 左**
+
+```js
+function inorderTraversal(root: TreeNode | null): number[] {
+    if(!root) return []
+    return [
+       root.val,
+      ...(root.left ? inorderTraversal(root.left) : []),
+      ...(root.right ? inorderTraversal(root.right) : [])
+    ]
+};
+```
+

@@ -36,5 +36,27 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
+    // 从后往前比较
+    // 存在两种情形
+    // 如果nums1中的元素大于nums2中的，那么将nums1的元素赋值给k，nums1的指针左移
+    // 否则的话，将nums2中的值赋值给k,nums2的指针左移
+    // 完成一次遍历后，将k的指针左移
+    let i = m - 1, j = n - 1, k = m + n - 1;
+    while (i >= 0 && j >= 0) {
+        if (nums1[i] >= nums2[j]) {
+            nums1[k] = nums1[i];
+            i--;
+        } else {
+            nums1[k] = nums2[j];
+            j--;
+        }
+        k--;
+    }
 
+    // 如果nums2中还有元素，那么将nums2中的元素填充到nums1中
+    while (j >= 0) {
+        nums1[k] = nums2[j];
+        j--;
+        k--;
+    }
 };
