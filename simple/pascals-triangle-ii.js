@@ -22,5 +22,15 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-
+    // 初始化数组，默认值都为0,首个元素为1
+    // 后面每次循环后，fn(j) = fn(j)+fn(j-1)
+    // 有点像斐波那契数列
+    const rows = new Array(rowIndex + 1).fill(0)
+    rows[0] = 1
+    for(i = 1; i <= rowIndex; i++) {
+        for(j = i; j > 0; j--) {
+            rows[j] += rows[j-1]
+        }
+    }
+    return rows
 };
