@@ -27,6 +27,15 @@
  * @param {string} s
  * @return {boolean}
  */
+// 利用双指针，一个指向头部，一个指向尾部。如果最终相遇，那么就是回文串
+// 过滤下s字符串的非数字/字母的 特殊字符
 var isPalindrome = function(s) {
-
+    s = s.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+    let left = 0, right = s.length - 1;
+    while(left < right) {
+        if(s[left++] !== s[right--]) {
+            return false
+        }
+    }
+    return true
 };
