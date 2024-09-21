@@ -36,14 +36,31 @@
 利用此特性，每轮假设发生 票数和 =0 都可以 缩小剩余数组区间 。当遍历完成时，最后一轮假设的数字即为众数。
  */
 
-var majorityElement = function(nums) {
-    let votes = 0,x = 0
-    for(const num of nums) {
-        if(votes === 0) {
+var majorityElement = function (nums) {
+    let votes = 0, x = 0
+    for (const num of nums) {
+        if (votes === 0) {
             x = num
         }
         const res = num === x ? 1 : -1
         votes += res
     }
     return x
+};
+
+// 这里增加一个验证环节。遍历数组nums统计x的数量
+var majorityElement = function (nums) {
+    let votes = 0, x = 0, count = 0
+    for (const num of nums) {
+        if (votes === 0) {
+            x = num
+        }
+        if (num === x) {
+            count += 1
+        }
+        const res = num === x ? 1 : -1
+        votes += res
+    }
+    // 如果超过半数，那么返回x，否则返回0
+    return count > nums.length / 2 ? x : 0
 };
