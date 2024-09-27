@@ -1,6 +1,6 @@
 # 记录下leetcode 刷题
 
-### 关于二分算法
+### 二分算法
 
 **三种区间的大致结构**
 
@@ -67,23 +67,74 @@ return left;//或return right;
 
 左开可以保证，left可以一直不动，且left不会向前越界。
 
-```
+```tex
 关于middle的计算
 以上在“左闭右开”和“左开右闭”中middle的计算不太一样
 middle = (left + right) >> 1;//左闭右开，靠近left
 middle = (left + right + 1) >> 1;//左开右闭，靠近right
+
 这为了防止死循环，为了方便理解，可以考虑left=1，right=2的情况。
 
 //此时
 middle = (left + right) >> 1;//结果为1
-    // 如果还是left=middle，陷入死循环
-    // 所以只能用在right=middle, left=middle+1的情况
+// 如果还是left=middle，陷入死循环
+// 所以只能用在right=middle, left=middle+1的情况
 middle = (left + right + 1) >> 1;//结果为2
-    // 如果还是right=middle，陷入死循环
-    // 所以只能用在left=middle, right=middle-1的情况
+// 如果还是right=middle，陷入死循环
+// 所以只能用在left=middle, right=middle-1的情况
 ```
-
 
 结论
 优先考虑使用左闭右开的原则吧，如果第一个元素有特殊情况，或担心向前越界的情况，考虑使用左开右闭。
+
+### 二叉树
+
+**前序遍历**
+
+**中 左 右**
+
+```js
+function inorderTraversal(root: TreeNode | null): number[] {
+    if(!root) return []
+    return [
+       root.val,
+      ...(root.left ? inorderTraversal(root.left) : []),
+      ...(root.right ? inorderTraversal(root.right) : [])
+    ]
+};
+```
+
+**中序遍历**
+
+**左 根 右**
+
+```js
+function inorderTraversal(root: TreeNode | null): number[] {
+    if(!root) return []
+    return [
+      ...(root.left ? inorderTraversal(root.left) : []),
+      root.val,
+      ...(root.right ? inorderTraversal(root.right) : [])
+    ]
+};
+```
+
+**后序遍历**
+
+**中 右 左**
+
+```js
+function inorderTraversal(root: TreeNode | null): number[] {
+    if(!root) return []
+    return [
+       root.val,
+      ...(root.left ? inorderTraversal(root.left) : []),
+      ...(root.right ? inorderTraversal(root.right) : [])
+    ]
+};
+```
+
+
+
+### 滑动窗口
 
