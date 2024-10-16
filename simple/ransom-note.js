@@ -24,6 +24,31 @@ magazine 中的每个字符只能在 ransomNote 中使用一次。
  * @param {string} magazine
  * @return {boolean}
  */
+// magazine的长度小于ransomNote的长度，直接返回false
+// 定义Map
+// 遍历magazine，进行字符次数统计
+// 遍历ransomNote, 如果Map匹配了,那么将次数-1
+// 如果count等于0/undefined【ransomNote中存在，magazine中不存在】,那么直接返回false
 var canConstruct = function(ransomNote, magazine) {
+    if(magazine.length < ransomNote.length) {
+        return false
+    }
+    const map = new Map()
+    for(let magaChar of magazine) {
+        if(map.has(magaChar)) {
+            map.set(magaChar, map.get(magaChar) + 1)
+        } else {
+            map.set(magaChar, 1)
+        }
+    }
 
+    for(let ranChar of ransomNote) {
+        const count = map.get(ranChar)
+        if(!count) {
+            return false
+        } else {
+            map.set(ranChar, count-1)
+        }
+    }
+    return true
 };
