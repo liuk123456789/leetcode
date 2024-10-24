@@ -23,3 +23,26 @@
 输入：turnedOn = 9
 输出：[]
 */
+
+/**
+ * @param {number} turnedOn
+ * @return {string[]}
+ */
+
+// 枚举时分
+var readBinaryWatch = function (turnedOn) {
+    const res = []
+    for (let h = 0; h < 12; h++) {
+        for (let m = 0; m < 60; m++) {
+            // 判定下小时的灯亮和分钟的灯亮的和是不是等于turnedOn,等于，添加进数组
+            const hl = h.toString(2).split('0').join('').length
+            const ml = m.toString(2).split('0').join('').length
+            if (hl + ml === turnedOn) {
+                res.push(`${h}:${m < 10 ? '0' : ''}${m}`)
+            }
+        }
+    }
+    return res
+};
+
+// TODO: 回溯，没太看懂，单纯贴下代码
