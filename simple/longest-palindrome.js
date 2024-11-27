@@ -21,6 +21,27 @@
  * @param {string} s
  * @return {number}
  */
-var longestPalindrome = function(s) {
-    
+var longestPalindrome = function (s) {
+    // 如果是回文串，那么字符数量必定是偶数[]
+    const map = {}
+    let res = 0
+    let odd = 0
+    for (const str of s) {
+        if (map[str]) {
+            map[str]++
+        } else {
+            map[str] = 1
+        }
+    }
+    for (const key in map) {
+        const count = map[key]
+        // 余数 比如 3 5 7 9 等，需要取出偶数数量
+        const rem = count % 2
+        res += count - rem
+        // 余数为1， 那么保留此奇数
+        if (rem === 1) {
+            odd = 1
+        }
+    }
+    return res + odd
 };
